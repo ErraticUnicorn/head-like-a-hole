@@ -15,15 +15,14 @@ public class ThrowHead : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//ThrowRigidBody ();
+		ThrowRigidBody ();
 	}
 
 	void ThrowRigidBody() {
 		if (head.tag == "HeadIsAttached" && Input.GetButtonDown ("Fire1") ) {
 			head.tag = "HeadIsDetached";
 			head.transform.parent = this.transform.parent;
-			head.transform.position = new Vector3 (-9f, 10f, -9f);
-			//head.GetComponent<Rigidbody> ().AddForce (this.transform.forward * speed);
+			head.GetComponent<Rigidbody> ().AddForce (head.transform.forward * speed);
 		}
 	}
 }

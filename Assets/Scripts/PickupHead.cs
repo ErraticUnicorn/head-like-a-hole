@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickupHead : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,8 +17,8 @@ public class PickupHead : MonoBehaviour {
 			collision.rigidbody.angularVelocity = Vector3.zero;
 			Transform bodyTransform = this.gameObject.transform;
 			Transform headTransform = collision.gameObject.transform;
-			headTransform.Translate (bodyTransform.position.x, bodyTransform.position.y + 0.75f, bodyTransform.position.z);
 			headTransform.parent = bodyTransform;
+			headTransform.position = new Vector3(bodyTransform.position.x, bodyTransform.position.y + .75f, bodyTransform.position.z);
 		}
 	}
 }
