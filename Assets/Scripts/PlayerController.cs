@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal1");
-        float moveVertical = Input.GetAxis("Vertical1");
+        float moveHorizontal = Input.GetAxis("Mouse X");
+        float moveVertical = Input.GetAxis("Mouse Y");
 
         Vector3 eulerAngleVelocity = new Vector3(-moveVertical, moveHorizontal, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);
