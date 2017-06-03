@@ -10,7 +10,6 @@ public class ThrowHead : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		head = GameObject.Find ("Head");
-		Debug.Log (head);
 	}
 	
 	// Update is called once per frame
