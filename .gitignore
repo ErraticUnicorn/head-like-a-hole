@@ -55,8 +55,8 @@ Temporary Items
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
-/Temp
-/Temp.meta
+head-like-a-hole/Temp
+head-like-a-hole/Temp.meta
 
 # Visual Studio 2015 cache directory
 /.vs/
