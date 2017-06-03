@@ -10,7 +10,7 @@ public class BodyController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        Rigidbody rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
