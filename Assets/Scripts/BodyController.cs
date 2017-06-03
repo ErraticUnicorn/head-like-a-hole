@@ -4,13 +4,14 @@ using System.Collections;
 public class BodyController : MonoBehaviour
 {
 
-    public float speed;
+	public float movementSpeed;
+	public float rotationSpeed;
 
     // private Rigidbody rb;
 
     void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
+//        Rigidbody rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -21,6 +22,8 @@ public class BodyController : MonoBehaviour
         // Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         //
         // rb.AddForce(movement * speed);
-		transform.Translate(speed*Input.GetAxis("Horizontal2")*Time.deltaTime, 0f, speed*Input.GetAxis("Vertical2")*Time.deltaTime);
+		transform.Translate(0f, -(movementSpeed * Input.GetAxis("Vertical2") * Time.deltaTime), 0f);
+		transform.Rotate(0f, 0f, rotationSpeed * Input.GetAxis("Horizontal2") * Time.deltaTime);
+		
     }
 }
