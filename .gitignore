@@ -55,6 +55,14 @@ Temporary Items
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
+/Assets/AssetStoreTools*.meta
+/Temp
+/Temp.meta
+head-like-a-hole/[Ll]ibrary/
+head-like-a-hole/[Tt]emp/
+head-like-a-hole/[Oo]bj/
+head-like-a-hole/[Bb]uild/
+head-like-a-hole/[Bb]uilds/
 head-like-a-hole/Temp
 head-like-a-hole/Temp.meta
 
