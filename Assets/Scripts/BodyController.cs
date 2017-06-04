@@ -18,11 +18,11 @@ public class BodyController : MonoBehaviour
 		float moveVertical = Input.GetAxis("Vertical2");
 		float moveHorizontal = Input.GetAxis("Horizontal2");
 		if (names.Length > 0) {
-			moveHorizontal = Input.GetAxis ("RightJoyStick1 X");
-			moveVertical = Input.GetAxis ("RightJoyStick1 Y");
+			moveHorizontal = Input.GetAxis ("LeftJoyStick1 X");
+			moveVertical = Input.GetAxis ("LeftJoyStick1 Y");
 		}
 
-		transform.Translate(0f, movementSpeed * moveHorizontal * Time.deltaTime, 0f);
-		transform.Rotate(0f, 0f, rotationSpeed * moveVertical * Time.deltaTime);
+		transform.Translate(0f, movementSpeed * moveVertical * Time.deltaTime, 0f);
+		transform.Rotate(0f, 0f, rotationSpeed * moveHorizontal * Time.deltaTime);
     }
 }

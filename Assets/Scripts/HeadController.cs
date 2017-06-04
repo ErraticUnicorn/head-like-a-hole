@@ -18,11 +18,11 @@ public class HeadController : MonoBehaviour
 
 		string[] names = Input.GetJoystickNames();
 		float moveHorizontal = Input.GetAxis("Mouse X");
-		float moveVertical = Input.GetAxis("Mouse Y");
+		float moveVertical = -Input.GetAxis("Mouse Y");
 
 		if (names.Length > 0) {
-			moveHorizontal = Input.GetAxis ("LeftJoyStick1 X");
-			moveVertical = Input.GetAxis ("LeftJoyStick1 Y");
+			moveHorizontal = Input.GetAxis ("RightJoyStick1 X");
+			moveVertical = Input.GetAxis ("RightJoyStick1 Y");
 		}
 
         Vector3 eulerAngleVelocity = new Vector3(-moveVertical, moveHorizontal, 0);
