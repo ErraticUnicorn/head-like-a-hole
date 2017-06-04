@@ -21,7 +21,6 @@ public class BodyController : MonoBehaviour
 		int.TryParse (lastChar, out playerNum);
 		moveHorizontalAxis = inputController.GetBodyHorizontalInputString (playerNum);
 		moveVerticalAxis = inputController.GetBodyVerticalInputString (playerNum);
-		Debug.Log (moveVerticalAxis);
     }
 
     void FixedUpdate() {
