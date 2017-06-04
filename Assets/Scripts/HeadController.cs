@@ -7,23 +7,27 @@ public class HeadController : MonoBehaviour
     public float speed;
 
     private Rigidbody rb;
+	private InputController inputController;
+	private int playerNum;
+	private string moveHorizontalAxis;
+	private string moveVerticalAxis;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
+		string parentTag = this.transform.parent.tag;
+		string lastChar = parentTag.Substring (parentTag.Length - 1);
+		int.TryParse (lastChar, out playerNum);
+		moveHorizontalAxis = inputController.GetHeadHorizontalInputString (playerNum);
+		moveVerticalAxis = inputController.GetHeadVerticalInputString (playerNum);
     }
 
     void FixedUpdate()
     {
-
-		string[] names = Input.GetJoystickNames();
-		float moveHorizontal = Input.GetAxis("Mouse X");
-		float moveVertical = -Input.GetAxis("Mouse Y");
-
-		if (names.Length > 0) {
-			moveHorizontal = Input.GetAxis ("RightJoyStick1 X");
-			moveVertical = Input.GetAxis ("RightJoyStick1 Y");
-		}
+		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
+		float moveVertical = Input.GetAxis(moveVerticalAxis);
 
         Vector3 eulerAngleVelocity = new Vector3(-moveVertical, moveHorizontal, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);
