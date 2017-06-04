@@ -22,7 +22,7 @@ public class GoalController : MonoBehaviour {
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject.name == "Head") {
 			gameController.AddScore (pointValue);
-			this.gameObject.transform.position = new Vector3(Random.Range(-10, 10), 4f, Random.Range(-10, 10));
+			this.gameObject.transform.position = new Vector3(Random.Range(-9, 9), 4f, Random.Range(-10, 10));
 		}
 	}
 }

@@ -7,9 +7,11 @@ public class ThrowHead : MonoBehaviour {
 	public int speed;
 
 	private GameObject head;
+	private HeadController headController;
 	// Use this for initialization
 	void Start () {
 		head = GameObject.Find ("Head");
+		headController = head.GetComponent<HeadController> ();
 	}
 	
 	// Update is called once per frame
@@ -19,9 +21,10 @@ public class ThrowHead : MonoBehaviour {
 
 	void ThrowRigidBody() {
 		if (head.tag == "HeadIsAttached" && Input.GetButtonDown ("Fire1") ) {
-			head.tag = "HeadIsDetached";
+			headController.enableHeadInteraction ();
 			head.transform.parent = this.transform.parent;
-			head.GetComponent<Rigidbody> ().AddForce (head.transform.forward * speed);
+			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
+			head.tag = "HeadIsDetached";
 		}
 	}
 }
