@@ -15,8 +15,8 @@ public class BodyController : MonoBehaviour
 
     void FixedUpdate() {
 		string[] names = Input.GetJoystickNames();
-		float moveHorizontal = Input.GetAxis("Vertical2");
-		float moveVertical = Input.GetAxis("Horizontal2");
+		float moveVertical = Input.GetAxis("Vertical2");
+		float moveHorizontal = Input.GetAxis("Horizontal2");
 		if (names.Length > 0) {
 			moveHorizontal = Input.GetAxis ("RightJoyStick1 X");
 			moveVertical = Input.GetAxis ("RightJoyStick1 Y");
