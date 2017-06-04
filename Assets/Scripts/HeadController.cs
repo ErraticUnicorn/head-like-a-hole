@@ -23,4 +23,14 @@ public class HeadController : MonoBehaviour
 
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
+
+	public void enableHeadInteraction () {
+		Physics.IgnoreLayerCollision(8, 9, false);
+		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+	}
+
+	public void disableHeadInteraction () {
+		Physics.IgnoreLayerCollision(8, 9, true);
+		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+	}
 }
