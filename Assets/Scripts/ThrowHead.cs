@@ -20,7 +20,8 @@ public class ThrowHead : MonoBehaviour {
 	}
 
 	void ThrowRigidBody() {
-		if (head.tag == "HeadIsAttached" && Input.GetButtonDown ("Fire1") ) {
+		float joystickThrow = Input.GetAxis ("JoyPad Fire");
+		if (head.tag == "HeadIsAttached" && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
 			headController.enableHeadInteraction ();
 			head.transform.parent = this.transform.parent;
 			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
