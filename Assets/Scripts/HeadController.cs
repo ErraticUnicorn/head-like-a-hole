@@ -15,8 +15,15 @@ public class HeadController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Mouse X");
-        float moveVertical = Input.GetAxis("Mouse Y");
+
+		string[] names = Input.GetJoystickNames();
+		float moveHorizontal = Input.GetAxis("Mouse X");
+		float moveVertical = Input.GetAxis("Mouse Y");
+
+		if (names.Length > 0) {
+			moveHorizontal = Input.GetAxis ("LeftJoyStick1 X");
+			moveVertical = Input.GetAxis ("LeftJoyStick1 Y");
+		}
 
         Vector3 eulerAngleVelocity = new Vector3(-moveVertical, moveHorizontal, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);

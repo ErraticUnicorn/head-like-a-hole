@@ -10,10 +10,19 @@ public class BodyController : MonoBehaviour
     // private Rigidbody rb;
 
     void Start() {
+		
     }
 
     void FixedUpdate() {
-		transform.Translate(0f, -(movementSpeed * Input.GetAxis("Vertical2") * Time.deltaTime), 0f);
-		transform.Rotate(0f, 0f, rotationSpeed * Input.GetAxis("Horizontal2") * Time.deltaTime);
+		string[] names = Input.GetJoystickNames();
+		float moveHorizontal = Input.GetAxis("Vertical2");
+		float moveVertical = Input.GetAxis("Horizontal2");
+		if (names.Length > 0) {
+			moveHorizontal = Input.GetAxis ("RightJoyStick1 X");
+			moveVertical = Input.GetAxis ("RightJoyStick1 Y");
+		}
+
+		transform.Translate(0f, movementSpeed * moveHorizontal * Time.deltaTime, 0f);
+		transform.Rotate(0f, 0f, rotationSpeed * moveVertical * Time.deltaTime);
     }
 }
