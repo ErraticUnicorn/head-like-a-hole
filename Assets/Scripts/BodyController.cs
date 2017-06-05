@@ -27,7 +27,18 @@ public class BodyController : MonoBehaviour
 		float moveVertical = Input.GetAxis(moveVerticalAxis);
 		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
 
-		transform.Translate(0f, movementSpeed * moveVertical * Time.deltaTime, 0f);
-		transform.Rotate(0f, 0f, rotationSpeed * moveHorizontal * Time.deltaTime);
+		Debug.Log (moveVertical);
+
+		if (moveVertical != 0) {
+			Debug.Log ("moveVertical != 0");
+			this.GetComponent<Animator> ().SetBool ("isWalking", true);
+		}
+		if (moveVertical == 0) {
+			Debug.Log ("moveVertical == 0");
+			this.GetComponent<Animator> ().SetBool ("isWalking", false);
+		}
+
+		transform.Translate(0f, 0f, movementSpeed * -(moveVertical) * Time.deltaTime);
+		transform.Rotate(0f, rotationSpeed * moveHorizontal * Time.deltaTime, 0f);
     }
 }
