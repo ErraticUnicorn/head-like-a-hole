@@ -23,7 +23,7 @@ public class PickupHead : MonoBehaviour {
 			Transform headTransform = head.transform;
 			headTransform.parent = bodyTransform;
 			headTransform.position = new Vector3 (bodyTransform.position.x, bodyTransform.position.y + 1.75f, bodyTransform.position.z);
-			headTransform.rotation = Quaternion.Euler (bodyTransform.localRotation);
+			headTransform.rotation = Quaternion.Euler (bodyTransform.forward);
 			headController.disableHeadInteraction ();
 		}
 	}
