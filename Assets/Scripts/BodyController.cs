@@ -38,7 +38,7 @@ public class BodyController : MonoBehaviour
 			this.GetComponent<Animator> ().SetBool ("isWalking", false);
 		}
 
-		transform.Translate(0f, 0f, movementSpeed * -(moveVertical) * Time.deltaTime);
+		transform.Translate(0f, 0f, movementSpeed * moveVertical * Time.deltaTime);
 		transform.Rotate(0f, rotationSpeed * moveHorizontal * Time.deltaTime, 0f);
     }
 }

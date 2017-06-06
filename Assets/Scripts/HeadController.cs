@@ -29,7 +29,7 @@ public class HeadController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
 		float moveVertical = Input.GetAxis(moveVerticalAxis);
 
-        Vector3 eulerAngleVelocity = new Vector3(-moveVertical, moveHorizontal, 0);
+        Vector3 eulerAngleVelocity = new Vector3(moveVertical, moveHorizontal, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);
 
         rb.MoveRotation(rb.rotation * deltaRotation);
