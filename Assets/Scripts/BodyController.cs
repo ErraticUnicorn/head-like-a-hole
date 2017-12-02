@@ -27,14 +27,11 @@ public class BodyController : MonoBehaviour
 		float moveVertical = Input.GetAxis(moveVerticalAxis);
 		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
 
-		Debug.Log (moveVertical);
 
 		if (moveVertical != 0) {
-			Debug.Log ("moveVertical != 0");
 			this.GetComponent<Animator> ().SetBool ("isWalking", true);
 		}
 		if (moveVertical == 0) {
-			Debug.Log ("moveVertical == 0");
 			this.GetComponent<Animator> ().SetBool ("isWalking", false);
 		}
 
