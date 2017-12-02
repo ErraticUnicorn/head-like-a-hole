@@ -15,8 +15,8 @@ public class Jump : MonoBehaviour {
 	void Start () {
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
-		string lastChar = parentTag.Substring (parentTag.Length - 1);
-		int.TryParse (lastChar, out playerNum);
+		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
+		int.TryParse (playerNumberChar, out playerNum);
 		jumpAxis = inputController.GetJumpInput (playerNum);
 	}
 	
@@ -29,7 +29,7 @@ public class Jump : MonoBehaviour {
 		if (_isOnGround)
 		{
 			float jumpDirection = Input.GetAxis (jumpAxis);
-			if (Input.GetButtonDown ("Jump") || jumpDirection < 0) {
+			if (jumpDirection > 0) {
 				moveDirection.y = jumpSpeed;
 				_isOnGround = false;
 			}

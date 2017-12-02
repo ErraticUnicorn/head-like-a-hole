@@ -6,21 +6,27 @@ public class BodyController : MonoBehaviour
 
 	public float movementSpeed;
 	public float rotationSpeed;
+	public bool isDecapitated;
 
 	private int playerNum;
 	private InputController inputController;
 	private string moveHorizontalAxis;
 	private string moveVerticalAxis;
+	private GameObject currentHead;
+	private GameObject actualHead;
 
     // private Rigidbody rb;
 
     void Start() {
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
-		string lastChar = parentTag.Substring (parentTag.Length - 1);
-		int.TryParse (lastChar, out playerNum);
+		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
+		int.TryParse (playerNumberChar, out playerNum);
 		moveHorizontalAxis = inputController.GetBodyHorizontalInputString (playerNum);
 		moveVerticalAxis = inputController.GetBodyVerticalInputString (playerNum);
+		actualHead = this.transform.parent.Find("Head").gameObject;
+		currentHead = null;
+		isDecapitated = true;
     }
 
     void FixedUpdate() {
@@ -38,4 +44,16 @@ public class BodyController : MonoBehaviour
 		transform.Translate(0f, 0f, movementSpeed * moveVertical * Time.deltaTime);
 		transform.Rotate(0f, rotationSpeed * moveHorizontal * Time.deltaTime, 0f);
     }
+
+	public GameObject GetCurrentHead() {
+		return currentHead;
+	}
+
+	public GameObject GetActualHead() {
+		return actualHead;
+	}
+
+	public void SetCurrentHead(GameObject head) {
+		currentHead = head;
+	}
 }

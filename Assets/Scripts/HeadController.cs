@@ -18,8 +18,8 @@ public class HeadController : MonoBehaviour
 
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
-		string lastChar = parentTag.Substring (parentTag.Length - 1);
-		int.TryParse (lastChar, out playerNum);
+		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
+		int.TryParse (playerNumberChar, out playerNum);
 		moveHorizontalAxis = inputController.GetHeadHorizontalInputString (playerNum);
 		moveVerticalAxis = inputController.GetHeadVerticalInputString (playerNum);
     }
@@ -36,12 +36,12 @@ public class HeadController : MonoBehaviour
     }
 
 	public void enableHeadInteraction () {
-		Physics.IgnoreLayerCollision(8, 9, false);
+		//Physics.IgnoreLayerCollision(8, 9, false);
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 	}
 
 	public void disableHeadInteraction () {
-		Physics.IgnoreLayerCollision(8, 9, true);
+		//Physics.IgnoreLayerCollision(8, 9, true);
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 	}
 }
