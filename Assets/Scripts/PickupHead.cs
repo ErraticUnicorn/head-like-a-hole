@@ -17,8 +17,8 @@ public class PickupHead : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		bool isGrounded = jumpScript.isGrounded();
-		if (collision.gameObject.tag == "HeadIsDetached" && isGrounded) {
+		bool isOnGround = jumpScript.GetIsOnGround();
+		if (collision.gameObject.tag == "HeadIsDetached" && isOnGround) {
 			collision.gameObject.tag = "HeadIsAttached";
 			collision.rigidbody.velocity = Vector3.zero;
 			collision.rigidbody.angularVelocity = Vector3.zero;

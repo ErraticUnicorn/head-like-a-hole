@@ -7,7 +7,7 @@ public class Jump : MonoBehaviour {
 	public float jumpSpeed = 8.0f;
 
 	private Vector3 moveDirection = Vector3.zero;
-	private bool grounded = true;
+	private bool _isOnGround = true;
 	private InputController inputController;
 	private int playerNum;
 	private string jumpAxis;
@@ -17,21 +17,21 @@ public class Jump : MonoBehaviour {
 		string parentTag = this.transform.parent.tag;
 		string lastChar = parentTag.Substring (parentTag.Length - 1);
 		int.TryParse (lastChar, out playerNum);
-		jumpAxis = inputController.GetThrowInput (playerNum);
+		jumpAxis = inputController.GetJumpInput (playerNum);
 	}
 	
 	void FixedUpdate() 
 	{
-		Jumping();
+		CheckJump();
 	}
 
-	void Jumping() {
-		if (grounded)
+	void CheckJump() {
+		if (_isOnGround)
 		{
-			float joystickThrow = Input.GetAxis (jumpAxis);
-			if (Input.GetButtonDown ("Jump") || joystickThrow < 0) {
+			float jumpDirection = Input.GetAxis (jumpAxis);
+			if (Input.GetButtonDown ("Jump") || jumpDirection < 0) {
 				moveDirection.y = jumpSpeed;
-				grounded = false;
+				_isOnGround = false;
 			}
 		}
 
@@ -40,12 +40,12 @@ public class Jump : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer ("Scenery")) {
-			grounded = true;
+			_isOnGround = true;
 			moveDirection.y = 0;
 		}
 	}
 
-	public bool isGrounded () {
-		return grounded;
+	public bool GetIsOnGround () {
+		return _isOnGround;
 	}
 }
