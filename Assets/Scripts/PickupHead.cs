@@ -7,15 +7,18 @@ public class PickupHead : MonoBehaviour {
 	private GameObject body;
 	private GameObject head;
 	private HeadController headController;
+	private Jump jumpScript;
 	// Use this for initialization
 	void Start () {
 		body = this.gameObject;
 		head = GameObject.Find ("Head");
 		headController = head.GetComponent<HeadController> ();
+		jumpScript = this.GetComponent<Jump> ();
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.tag == "HeadIsDetached") {
+		bool isGrounded = jumpScript.isGrounded();
+		if (collision.gameObject.tag == "HeadIsDetached" && isGrounded) {
 			collision.gameObject.tag = "HeadIsAttached";
 			collision.rigidbody.velocity = Vector3.zero;
 			collision.rigidbody.angularVelocity = Vector3.zero;

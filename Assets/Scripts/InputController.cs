@@ -48,6 +48,10 @@ public class InputController : MonoBehaviour {
 		}
 	}
 
+	public string GetJumpInput(int playerNum) {
+		return "Jump";
+	}
+
 	public string GetThrowInput(int playerNum) {
 		return "JoyPad Fire";
 	}
