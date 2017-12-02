@@ -5,10 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Body
-  - HeadIsAttached
-  - HeadIsDetached
   - Player1
   - Player2
+  - isBodyless
   layers:
   - Default
   - TransparentFX

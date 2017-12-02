@@ -6,20 +6,20 @@ public class ThrowHead : MonoBehaviour {
 
 	public int speed;
 
-	private GameObject head;
-	private HeadController headController;
+	private GameObject body;
+	private BodyController bodyController;
 	private InputController inputController;
 	private int playerNum;
 	private string fireAxis;
 	// Use this for initialization
 	void Start () {
-		head = GameObject.Find ("Head");
-		headController = head.GetComponent<HeadController> ();
+		body = this.gameObject;
+		bodyController = body.GetComponent<BodyController> ();
 
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
-		string lastChar = parentTag.Substring (parentTag.Length - 1);
-		int.TryParse (lastChar, out playerNum);
+		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
+		int.TryParse (playerNumberChar, out playerNum);
 		fireAxis = inputController.GetThrowInput (playerNum);
 	}
 	
@@ -30,11 +30,16 @@ public class ThrowHead : MonoBehaviour {
 
 	void ThrowRigidBody() {
 		float joystickThrow = Input.GetAxis (fireAxis);
-		if (head.tag == "HeadIsAttached" && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+
+		if (!bodyController.isDecapitated && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+			GameObject head = bodyController.GetCurrentHead ();
+			HeadController headController = head.GetComponent<HeadController> ();
 			headController.enableHeadInteraction ();
 			head.transform.parent = this.transform.parent;
 			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
-			head.tag = "HeadIsDetached";
+			head.tag = "isBodyless";
+			bodyController.SetCurrentHead(null);
+			bodyController.isDecapitated = true;
 		}
 	}
 }
