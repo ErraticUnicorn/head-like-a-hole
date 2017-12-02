@@ -37,7 +37,7 @@ public class ThrowHead : MonoBehaviour {
 			headController.enableHeadInteraction ();
 			head.transform.parent = this.transform.parent;
 			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
-			head.tag = "HeadIsDetached";
+			head.tag = "isBodyless";
 			bodyController.SetCurrentHead(null);
 			bodyController.isDecapitated = true;
 		}

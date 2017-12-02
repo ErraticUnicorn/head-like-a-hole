@@ -207,6 +207,10 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.width
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010073205616, guid: 185ba7ee449e9ee46ba29a347fe231bd, type: 2}
+      propertyPath: m_TagString
+      value: isBodyless
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185ba7ee449e9ee46ba29a347fe231bd, type: 2}
   m_IsPrefabParent: 0
@@ -810,6 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
   rotationSpeed: 100
+  isDecapitated: 0
 --- !u!54 &617959562
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1729,6 +1734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
   rotationSpeed: 100
+  isDecapitated: 0
 --- !u!114 &1265770895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,6 +1965,10 @@ Prefab:
         type: 2}
       propertyPath: m_NormalizedViewPortRect.width
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010073205616, guid: 185ba7ee449e9ee46ba29a347fe231bd, type: 2}
+      propertyPath: m_TagString
+      value: isBodyless
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185ba7ee449e9ee46ba29a347fe231bd, type: 2}
