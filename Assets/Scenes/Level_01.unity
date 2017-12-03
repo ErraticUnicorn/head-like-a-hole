@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657993, g: 0.49641424, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657958, g: 0.49641377, b: 0.5748177, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1025,6 +1025,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: fefd216c9ba524240833723663087c31, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9ced16c3546f4e6bb604dac1936ca9f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fefd216c9ba524240833723663087c31, type: 3}
   m_IsPrefabParent: 0
@@ -1994,7 +1998,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 34793ea167a774f2e83202b65f776b8a, type: 2}
+      objectReference: {fileID: 2100000, guid: dacdbede0686b446fb9d920a4105b2ea, type: 2}
     - target: {fileID: 1000010073205616, guid: 185ba7ee449e9ee46ba29a347fe231bd, type: 2}
       propertyPath: m_Name
       value: Head
@@ -2052,8 +2056,7 @@ MonoBehaviour:
   playerTwoScore: 0
   playerOneScoreText: {fileID: 411458973}
   playerTwoScoreText: {fileID: 2083631199}
-  gameOverText: {fileID: 0}
-  numberOfPointsUntilGameOver: 3
+  numberOfPointsUntilGameOver: 0
 --- !u!4 &1479861575
 Transform:
   m_ObjectHideFlags: 0
@@ -2108,7 +2111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1620ca58743b9411ba9842df8ddfedde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 1
+  pointValue: 0
 --- !u!23 &1502220092
 MeshRenderer:
   m_ObjectHideFlags: 0
