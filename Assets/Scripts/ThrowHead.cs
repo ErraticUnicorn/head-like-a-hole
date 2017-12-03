@@ -34,7 +34,8 @@ public class ThrowHead : MonoBehaviour {
 		if (!bodyController.isDecapitated && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
 			GameObject head = bodyController.GetCurrentHead ();
 			HeadController headController = head.GetComponent<HeadController> ();
-			headController.enableHeadInteraction ();
+			headController.EnableHeadInteraction ();
+			headController.SetLastThrownByPlayerNumber (playerNum);
 			head.transform.parent = this.transform.parent;
 			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
 			head.tag = "isBodyless";
