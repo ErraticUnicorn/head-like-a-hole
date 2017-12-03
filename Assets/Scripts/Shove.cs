@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Shove : MonoBehaviour {
 
-	public float shoveForce = 500f;
+	public float shoveForce = 50f;
 
 	private int playerNum;
 	private string shoveAxis;
 	private InputController inputController;
 
-	private bool isInShovingRange;
 	private GameObject shovedPlayer;
 
 
 	// Use this for initialization
 	void Start () {
-		isInShovingRange = false;
-
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
 		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);

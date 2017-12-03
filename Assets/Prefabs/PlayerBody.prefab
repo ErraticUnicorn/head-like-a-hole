@@ -695,7 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590924242907308}
   m_Layer: 0
-  m_Name: PlayerSkeleton
+  m_Name: Bip01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
