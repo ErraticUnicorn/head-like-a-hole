@@ -166,6 +166,14 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1831677497725826, guid: 4617689bfd6c24d3a91e20ab19baba97, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697965406115094, guid: 4617689bfd6c24d3a91e20ab19baba97, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4617689bfd6c24d3a91e20ab19baba97, type: 2}
   m_IsPrefabParent: 0
@@ -407,19 +415,6 @@ Prefab:
     - target: {fileID: 4723809601229796, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114289159591583882, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d,
-        type: 2}
-      propertyPath: movementSpeed
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649367197481206, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
-      propertyPath: m_Name
-      value: Bip01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1977091206200768, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
-      propertyPath: m_Name
-      value: PlayerMesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
