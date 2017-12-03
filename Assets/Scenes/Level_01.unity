@@ -413,6 +413,14 @@ Prefab:
       propertyPath: movementSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1649367197481206, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
+      propertyPath: m_Name
+      value: Bip01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977091206200768, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
+      propertyPath: m_Name
+      value: PlayerMesh
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
   m_IsPrefabParent: 0
@@ -437,15 +445,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4723809601229796, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723809601229796, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723809601229796, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723809601229796, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
       propertyPath: m_LocalRotation.w
@@ -464,6 +472,15 @@ Prefab:
         type: 2}
       propertyPath: movementSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 95950266915628780, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d,
+        type: 2}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649367197481206, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
+      propertyPath: m_Name
+      value: Bip01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37fc38c7d7e3476bb3cf3e1f1ce1f2d, type: 2}
@@ -1916,7 +1933,7 @@ MonoBehaviour:
   playerTwoScore: 0
   playerOneScoreText: {fileID: 411458973}
   playerTwoScoreText: {fileID: 2083631199}
-  numberOfPointsUntilGameOver: 0
+  numberOfPointsUntilGameOver: 3
 --- !u!4 &1479861575
 Transform:
   m_ObjectHideFlags: 0
