@@ -11,6 +11,7 @@ public class HeadController : MonoBehaviour
 	private int playerNum;
 	private string moveHorizontalAxis;
 	private string moveVerticalAxis;
+	private int lastThrownByPlayerNumber;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class HeadController : MonoBehaviour
 		int.TryParse (playerNumberChar, out playerNum);
 		moveHorizontalAxis = inputController.GetHeadHorizontalInputString (playerNum);
 		moveVerticalAxis = inputController.GetHeadVerticalInputString (playerNum);
+		lastThrownByPlayerNumber = 0;
     }
 
     void FixedUpdate()
@@ -35,13 +37,21 @@ public class HeadController : MonoBehaviour
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
 
-	public void enableHeadInteraction () {
+	public void EnableHeadInteraction () {
 		//Physics.IgnoreLayerCollision(8, 9, false);
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 	}
 
-	public void disableHeadInteraction () {
+	public void DisableHeadInteraction () {
 		//Physics.IgnoreLayerCollision(8, 9, true);
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+	}
+
+	public void SetLastThrownByPlayerNumber(int playerNumber) {
+		lastThrownByPlayerNumber = playerNumber;
+	}
+
+	public int GetLastThrownByPlayerNumber() {
+		return lastThrownByPlayerNumber;
 	}
 }

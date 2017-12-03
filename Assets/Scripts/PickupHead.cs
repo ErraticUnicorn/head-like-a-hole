@@ -7,12 +7,10 @@ public class PickupHead : MonoBehaviour {
 	private GameObject body;
 	private BodyController bodyController;
 	private Jump jumpScript;
-	private Transform parent;
 	// Use this for initialization
 	void Start () {
 		body = this.gameObject;
 		bodyController = body.GetComponent<BodyController> ();
-		parent = this.transform.parent;
 		jumpScript = this.GetComponent<Jump> ();
 	}
 
@@ -28,7 +26,7 @@ public class PickupHead : MonoBehaviour {
 			headTransform.parent = bodyTransform;
 			headTransform.position = new Vector3 (bodyTransform.position.x, bodyTransform.position.y + 1.75f, bodyTransform.position.z);
 			headTransform.rotation = Quaternion.Euler (bodyTransform.forward);
-			headController.disableHeadInteraction ();
+			headController.DisableHeadInteraction ();
 			bodyController.SetCurrentHead (collision.gameObject);
 			bodyController.isDecapitated = false;
 		}
