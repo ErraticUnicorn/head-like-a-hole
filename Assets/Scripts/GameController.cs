@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour {
 	public int playerTwoScore;
 	public Text playerOneScoreText;
 	public Text playerTwoScoreText;
-	public Text gameOverText;
 	public int numberOfPointsUntilGameOver;
 
 	private InputController inputController;

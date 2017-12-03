@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThrowHead : MonoBehaviour {
 
-	public int speed;
+	public int speed = 500;
 
 	private GameObject body;
 	private BodyController bodyController;
