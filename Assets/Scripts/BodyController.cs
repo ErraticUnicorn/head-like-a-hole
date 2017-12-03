@@ -4,9 +4,9 @@ using System.Collections;
 public class BodyController : MonoBehaviour
 {
 
-	public float movementSpeed;
-	public float rotationSpeed;
-	public bool isDecapitated;
+	public float movementSpeed = 2.5f;
+	public float rotationSpeed = 100f;
+	public bool isDecapitated = true;
 
 	private int playerNum;
 	private InputController inputController;
@@ -24,7 +24,7 @@ public class BodyController : MonoBehaviour
 		int.TryParse (playerNumberChar, out playerNum);
 		moveHorizontalAxis = inputController.GetBodyHorizontalInputString (playerNum);
 		moveVerticalAxis = inputController.GetBodyVerticalInputString (playerNum);
-		actualHead = this.transform.parent.Find("Head").gameObject;
+		actualHead = this.transform.parent.Find("PlayerHead").gameObject;
 		currentHead = null;
 		isDecapitated = true;
     }
@@ -32,7 +32,6 @@ public class BodyController : MonoBehaviour
     void FixedUpdate() {
 		float moveVertical = Input.GetAxis(moveVerticalAxis);
 		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
-
 
 		if (moveVertical != 0) {
 			this.GetComponent<Animator> ().SetBool ("isWalking", true);
