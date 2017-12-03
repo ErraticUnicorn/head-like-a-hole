@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GoalController : MonoBehaviour {
 
-	public int pointValue;
+	public int pointValue = 1;
+	public float goalHeight = 2f;
 
 	private GameController gameController;
 
@@ -12,6 +13,7 @@ public class GoalController : MonoBehaviour {
 	void Start () {
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		gameController = gameControllerObject.GetComponent<GameController>();
+		this.gameObject.transform.position = new Vector3(0f, goalHeight, 0f);
 	}
 	
 	// Update is called once per frame
@@ -20,10 +22,10 @@ public class GoalController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision collision) {
-		if (collision.gameObject.name == "Head") {
+		if (collision.gameObject.name == "PlayerHead") {
 			HeadController headController = collision.gameObject.GetComponent<HeadController> ();
 			gameController.AddScore (pointValue, headController.GetLastThrownByPlayerNumber());
-			this.gameObject.transform.position = new Vector3(Random.Range(-9, 9), 6f, Random.Range(-10, 10));
+			this.gameObject.transform.position = new Vector3(Random.Range(-9, 9), goalHeight, Random.Range(-9, 9));
 		}
 	}
 }
