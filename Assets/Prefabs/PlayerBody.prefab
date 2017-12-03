@@ -1001,6 +1001,7 @@ GameObject:
   - component: {fileID: 114289159591583882}
   - component: {fileID: 114826678406941936}
   - component: {fileID: 114651999584161602}
+  - component: {fileID: 114549787628904518}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -2185,7 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cf872111b1be24ba61205b32d7889d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed: 3.5
   rotationSpeed: 100
   isDecapitated: 0
 --- !u!114 &114363390361728062
@@ -2200,6 +2201,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSpeed: 8
+--- !u!114 &114549787628904518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915385381677818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8abec565f85a14381bc9d9ae66132b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoveForce: 50
 --- !u!114 &114651999584161602
 MonoBehaviour:
   m_ObjectHideFlags: 1

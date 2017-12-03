@@ -38,12 +38,20 @@ public class HeadController : MonoBehaviour
     }
 
 	public void EnableHeadInteraction () {
-		//Physics.IgnoreLayerCollision(8, 9, false);
+		if(playerNum == 1){ 
+			Physics.IgnoreLayerCollision (8, 9, false);
+		} else {
+			Physics.IgnoreLayerCollision (8, 10, false);
+		}
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 	}
 
 	public void DisableHeadInteraction () {
-		//Physics.IgnoreLayerCollision(8, 9, true);
+		if(playerNum == 1){ 
+			Physics.IgnoreLayerCollision(8, 9, true);
+		} else {
+			Physics.IgnoreLayerCollision(8, 10, true);
+		}
 		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 	}
 
