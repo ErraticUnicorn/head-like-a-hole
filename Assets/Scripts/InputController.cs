@@ -53,6 +53,10 @@ public class InputController : MonoBehaviour {
 	}
 
 	public string GetThrowInput(int playerNum) {
-		return "j"+playerNum+"JoyPad Fire";
+		if (controllersConnected) {
+			return "j" + playerNum + "JoyPad Fire";
+		} else {
+			return "Fire1";
+		}
 	}
 }
