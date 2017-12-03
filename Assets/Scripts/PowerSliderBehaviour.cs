@@ -7,26 +7,26 @@ public class PowerSliderBehaviour : MonoBehaviour {
 
 	public Slider slider;
 	public float sliderSpeed = .05f;
-	private bool pressed;
+	private bool isPressed;
 
 	// Use this for initialization
 	void Start () {
-		pressed = false;
+		isPressed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (pressed == true) {
+		if (isPressed == true) {
 			slider.value += sliderSpeed;
 		}
 	}
 
 	public void Activate() {
-		pressed = true;
+		isPressed = true;
 	}
 
 	public void Release() {
-		pressed = false;
+		isPressed = false;
 	}
 
 	public double GetPower() {

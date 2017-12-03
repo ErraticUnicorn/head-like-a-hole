@@ -6,7 +6,7 @@ public class ThrowHead : MonoBehaviour {
 
 	public int speed = 500;
 
-	private bool throwing;
+	private bool isThrowing;
 	private GameObject body;
 	private BodyController bodyController;
 	private InputController inputController;
@@ -17,7 +17,7 @@ public class ThrowHead : MonoBehaviour {
 	void Start () {
 		body = this.gameObject;
 		bodyController = body.GetComponent<BodyController> ();
-		throwing = false;
+		isThrowing = false;
 
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
@@ -35,13 +35,13 @@ public class ThrowHead : MonoBehaviour {
 	void ThrowRigidBody() {
 		float joystickThrow = Input.GetAxis (fireAxis);
 
-		if (!bodyController.isDecapitated && !throwing && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+		if (!bodyController.isDecapitated && !isThrowing && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
 			powerSlider.Activate ();
-			throwing = true;
+			isThrowing = true;
 		}
 
 		double tooMuchPower = powerSlider.GetPower ();
-		if ((throwing && (Input.GetButtonDown ("Fire1") || joystickThrow == 0)) || tooMuchPower >= 1) {
+		if ((isThrowing && (Input.GetButtonDown ("Fire1") || joystickThrow == 0)) || tooMuchPower >= 1) {
 			double powerModifier = this.GetPowerModifierAndReset ();
 			GameObject head = bodyController.GetCurrentHead ();
 			HeadController headController = head.GetComponent<HeadController> ();
@@ -53,7 +53,7 @@ public class ThrowHead : MonoBehaviour {
 			head.tag = "isBodyless";
 			bodyController.SetCurrentHead(null);
 			bodyController.isDecapitated = true;
-			throwing = false;
+			isThrowing = false;
 		}
 	}
 
