@@ -35,13 +35,13 @@ public class ThrowHead : MonoBehaviour {
 	void ThrowRigidBody() {
 		float joystickThrow = Input.GetAxis (fireAxis);
 
-		if (!bodyController.isDecapitated && !isThrowing && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+		if (!bodyController.isDecapitated && !isThrowing && joystickThrow < 0 ) {
 			powerSlider.Activate ();
 			isThrowing = true;
 		}
 
 		double tooMuchPower = powerSlider.GetPower ();
-		if ((isThrowing && (Input.GetButtonDown ("Fire1") || joystickThrow == 0)) || tooMuchPower >= 1) {
+		if ((isThrowing && joystickThrow == 0) || tooMuchPower >= 1) {
 			double powerModifier = this.GetPowerModifierAndReset ();
 			GameObject head = bodyController.GetCurrentHead ();
 			HeadController headController = head.GetComponent<HeadController> ();
