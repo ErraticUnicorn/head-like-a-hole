@@ -11,7 +11,7 @@ public class GameOverController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scoreController = GameObject.Find ("ScoreTracker").GetComponent<ScoreController>();
+		scoreController = GameObject.Find ("ScoreManager").GetComponent<ScoreController>();
 		int playerOneScore = scoreController.playerOneScore;
 		int playerTwoScore = scoreController.playerTwoScore;
 		int winner = 1;

@@ -20,16 +20,11 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
-		scoreController = GameObject.Find ("ScoreTracker").GetComponent<ScoreController>();
+		scoreController = GameObject.Find ("ScoreManager").GetComponent<ScoreController>();
 		playerOneScore = scoreController.playerOneScore;
 		playerOneScoreText.text = "Player 1: " + playerOneScore;
 		playerTwoScore = scoreController.playerTwoScore;
 		playerTwoScoreText.text = "Player 2: " + playerTwoScore;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		CheckForGameOver ();
 	}
 
 	void CheckForGameOver() {
@@ -44,11 +39,13 @@ public class GameController : MonoBehaviour {
 			playerOneScore += scoreValue;
 			scoreController.playerOneScore = playerOneScore;
 			playerOneScoreText.text = "Player 1: " + playerOneScore;
+			CheckForGameOver ();
 			break;
 		case 2:
 			playerTwoScore += scoreValue;
 			scoreController.playerTwoScore = playerTwoScore;
 			playerTwoScoreText.text = "Player 2: " + playerTwoScore;
+			CheckForGameOver ();
 			break;
 		}
 	}
