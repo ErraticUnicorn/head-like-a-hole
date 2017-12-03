@@ -6,21 +6,25 @@ public class ThrowHead : MonoBehaviour {
 
 	public int speed = 500;
 
+	private bool throwing;
 	private GameObject body;
 	private BodyController bodyController;
 	private InputController inputController;
 	private int playerNum;
 	private string fireAxis;
+	private PowerSliderBehaviour powerSlider;
 	// Use this for initialization
 	void Start () {
 		body = this.gameObject;
 		bodyController = body.GetComponent<BodyController> ();
+		throwing = false;
 
 		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		string parentTag = this.transform.parent.tag;
 		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
 		int.TryParse (playerNumberChar, out playerNum);
 		fireAxis = inputController.GetThrowInput (playerNum);
+		powerSlider = GameObject.Find ("Player" + playerNum + "Slider").GetComponent<PowerSliderBehaviour>();
 	}
 	
 	// Update is called once per frame
@@ -31,16 +35,32 @@ public class ThrowHead : MonoBehaviour {
 	void ThrowRigidBody() {
 		float joystickThrow = Input.GetAxis (fireAxis);
 
-		if (!bodyController.isDecapitated && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+		if (!bodyController.isDecapitated && !throwing && (Input.GetButtonDown ("Fire1") || joystickThrow < 0) ) {
+			powerSlider.Activate ();
+			throwing = true;
+		}
+
+		double tooMuchPower = powerSlider.GetPower ();
+		if ((throwing && (Input.GetButtonDown ("Fire1") || joystickThrow == 0)) || tooMuchPower >= 1) {
+			double powerModifier = this.GetPowerModifierAndReset ();
 			GameObject head = bodyController.GetCurrentHead ();
 			HeadController headController = head.GetComponent<HeadController> ();
 			headController.EnableHeadInteraction ();
 			headController.SetLastThrownByPlayerNumber (playerNum);
 			head.transform.parent = this.transform.parent;
-			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * speed);
+			int adjustedSpeed = (int)(speed * powerModifier);
+			head.GetComponent<Rigidbody> ().AddForce (-head.transform.forward * adjustedSpeed);
 			head.tag = "isBodyless";
 			bodyController.SetCurrentHead(null);
 			bodyController.isDecapitated = true;
+			throwing = false;
 		}
+	}
+
+	double GetPowerModifierAndReset() {
+		powerSlider.Release ();
+		double powerModifier = powerSlider.GetPower ();
+		powerSlider.Reset ();
+		return powerModifier;
 	}
 }

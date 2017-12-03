@@ -11,14 +11,12 @@ public class GameController : MonoBehaviour {
 	public Text playerTwoScoreText;
 	public int numberOfPointsUntilGameOver = 2;
 
-	private InputController inputController;
 	private ScoreController scoreController;
 	private string startAxis1;
 	private string startAxis2;
 
 	// Use this for initialization
 	void Start () {
-		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
 		scoreController = GameObject.Find ("ScoreManager").GetComponent<ScoreController>();
 		playerOneScore = scoreController.playerOneScore;
 		playerOneScoreText.text = "Player 1: " + playerOneScore;
