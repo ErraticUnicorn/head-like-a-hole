@@ -61,6 +61,10 @@ public class InputController : MonoBehaviour {
 	}
 
 	public string GetShoveInput(int playerNum) {
-		return "j" + playerNum + "JoyPad Shove";
+		if (controllersConnected) {
+			return "j" + playerNum + "JoyPad Shove";
+		} else {
+			return "Fire2";
+		}
 	}
 }

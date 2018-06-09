@@ -49,6 +49,7 @@ public class Shove : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.name == "PlayerBody") {
+			Debug.Log("Shoving");
 			shovedPlayer = collision.gameObject;
 		}
 	}
