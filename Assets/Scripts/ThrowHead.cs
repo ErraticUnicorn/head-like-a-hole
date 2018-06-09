@@ -34,7 +34,6 @@ public class ThrowHead : MonoBehaviour {
 
 	void ThrowRigidBody() {
 		float joystickThrow = Input.GetAxis (fireAxis);
-
 		if (!bodyController.isDecapitated && !isThrowing && joystickThrow < 0 ) {
 			powerSlider.Activate ();
 			isThrowing = true;
