@@ -18,7 +18,7 @@ public class InputController : MonoBehaviour {
 
 	public string GetHeadHorizontalInputString(int playerNum) {
 		if (controllersConnected) {
-			return "j"+playerNum+"RightJoyStick1 X";
+			return "j"+playerNum + "RightJoyStick1 X";
 		} else {
 			return "Mouse X";
 		}
@@ -26,7 +26,7 @@ public class InputController : MonoBehaviour {
 
 	public string GetHeadVerticalInputString(int playerNum) {
 		if (controllersConnected) {
-			return "j"+playerNum+"RightJoyStick1 Y";
+			return "j"+playerNum + "RightJoyStick1 Y";
 		} else {
 			return "Mouse Y";
 		}
@@ -36,7 +36,7 @@ public class InputController : MonoBehaviour {
 		if (controllersConnected) {
 			return "j"+playerNum+"LeftJoyStick1 X";
 		} else {
-			return "Horizontal2";
+			return "Horizontal" + playerNum;
 		}
 	}
 
@@ -44,19 +44,23 @@ public class InputController : MonoBehaviour {
 		if (controllersConnected) {
 			return "j"+playerNum+"LeftJoyStick1 Y";
 		} else {
-			return "Vertical2";
+			return "Vertical" + playerNum;
 		}
 	}
 
 	public string GetJumpInput(int playerNum) {
-		return "j"+playerNum+"Jump";
+		if (controllersConnected) {
+			return "j"+playerNum+"Jump";
+		} else {
+			return "Jump" + playerNum;
+		}
 	}
 
 	public string GetThrowInput(int playerNum) {
 		if (controllersConnected) {
 			return "j" + playerNum + "JoyPad Fire";
 		} else {
-			return "Fire1";
+			return "Fire" + playerNum;
 		}
 	}
 
@@ -64,7 +68,7 @@ public class InputController : MonoBehaviour {
 		if (controllersConnected) {
 			return "j" + playerNum + "JoyPad Shove";
 		} else {
-			return "Fire2";
+			return "Push" + playerNum;
 		}
 	}
 }
