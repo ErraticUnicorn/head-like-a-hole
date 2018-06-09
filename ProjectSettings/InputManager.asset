@@ -169,8 +169,8 @@ InputManager:
     m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: return
+    negativeButton: return
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
