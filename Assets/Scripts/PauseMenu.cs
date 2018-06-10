@@ -7,12 +7,17 @@ public class PauseMenu : MonoBehaviour {
 
 	public static bool gameIsPaused = false;
 	public GameObject pauseMenuUI;
+	public GameObject resumeButton;
 	private InputController inputController;
 	private string pauseButton;
+	private bool controllersConnected = false;
+	private GameObject eventSystem;
 
 	void Start () {
-		//inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
-		//inputController.GetBodyHorizontalInputString (playerNum);
+		eventSystem = GameObject.Find ("EventSystem");
+		if (Input.GetJoystickNames ().Length > 0) {
+			controllersConnected = true;
+		} 
 	}
 	
 	// Update is called once per frame
@@ -36,6 +41,9 @@ public class PauseMenu : MonoBehaviour {
 		gameIsPaused = true;
 		pauseMenuUI.SetActive (true);
 		Time.timeScale = 0f;
+		if (controllersConnected) {
+			eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(resumeButton);
+		}
 	}
 
 	public void LoadMenu() {
