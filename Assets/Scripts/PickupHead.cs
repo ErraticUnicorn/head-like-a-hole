@@ -3,32 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupHead : MonoBehaviour {
-
-	private GameObject body;
+    
+    private PlayerManager playerManager;
+    private GameObject body;
 	private BodyController bodyController;
-	private Jump jumpScript;
-	// Use this for initialization
+
 	void Start () {
-		body = this.gameObject;
+        playerManager = this.transform.parent.gameObject.GetComponent<PlayerManager>();
+
+        body = this.gameObject;
 		bodyController = body.GetComponent<BodyController> ();
-		jumpScript = this.GetComponent<Jump> ();
 	}
 
+
+    // 
 	void OnCollisionEnter(Collision collision) {
-		bool isOnGround = jumpScript.GetIsOnGround();
-		if (collision.gameObject.tag == "isBodyless" && isOnGround && bodyController.isDecapitated) {
-			collision.gameObject.tag = "Untagged";
-			collision.rigidbody.velocity = Vector3.zero;
-			collision.rigidbody.angularVelocity = Vector3.zero;
-			Transform bodyTransform = body.transform;
-			Transform headTransform = collision.gameObject.transform;
-			HeadController headController = collision.gameObject.GetComponent<HeadController> ();
-			headTransform.parent = bodyTransform;
-			headTransform.position = new Vector3 (bodyTransform.position.x, bodyTransform.position.y + 1.75f, bodyTransform.position.z);
-			headTransform.rotation = Quaternion.Euler (bodyTransform.forward);
-			headController.DisableHeadInteraction ();
-			bodyController.SetCurrentHead (collision.gameObject);
-			bodyController.isDecapitated = false;
+        Debug.Log("Colliding with something");
+        bool headIsPickupable = CheckIsHeadPickupable(collision);
+        bool bodyIsReady = CheckIsBodyReady(body);
+        if(bodyIsReady && headIsPickupable) {
+            Debug.Log("That something is a head");
+            playerManager.playerIsWhole = true;
+            PositionHead(collision.gameObject);
+            AttachHead(collision.gameObject);
+            bodyController.SetCurrentHead(collision.gameObject);
 		}
 	}
+
+    bool CheckIsBodyReady(GameObject _body)
+    {
+        Debug.Log("CheckIsBodyReady is firing");
+        return (_body.GetComponent<Jump>().GetIsOnGround() && !_body.transform.parent.gameObject.GetComponent<PlayerManager>().playerIsWhole);
+    }
+
+    bool CheckIsHeadPickupable(Collision _collision)
+    {
+        HeadController collisionObjectHeadController = _collision.gameObject.GetComponent<HeadController>();
+        if (collisionObjectHeadController)
+        {
+            return !collisionObjectHeadController.isDisabled;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void AttachHead(GameObject _head)
+    {
+        Debug.Log("AttachHead is firing");
+        _head.transform.parent = body.transform;
+    }
+
+    void PositionHead(GameObject _head)
+    {
+        Debug.Log("PositionHead is firing");
+        HeadController headController = _head.GetComponent<HeadController>();
+        headController.DisableHeadRigidbody();
+
+        _head.transform.rotation = Quaternion.Euler(body.transform.forward);
+        _head.transform.position = new Vector3(body.transform.position.x, body.transform.position.y + 1.75f, body.transform.position.z);
+    }
 }
