@@ -6,8 +6,9 @@ public class BodyController : MonoBehaviour
 
 	public float movementSpeed = 2.5f;
 	public float rotationSpeed = 100f;
+	public bool isWalking = false;
 
-    private PlayerManager playerManager;
+  private PlayerManager playerManager;
 	private int playerNum;
 	private InputController inputController;
 	private string moveHorizontalAxis;
@@ -34,11 +35,13 @@ public class BodyController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
 
 		if (moveVertical != 0) {
-			this.GetComponent<Animator> ().SetBool ("isWalking", true);
+			this.isWalking = true;
 		}
 		if (moveVertical == 0) {
-			this.GetComponent<Animator> ().SetBool ("isWalking", false);
+			this.isWalking = false;
 		}
+		this.GetComponent<Animator> ().SetBool ("isWalking", this.isWalking);
+
 
 		transform.Translate(0f, 0f, movementSpeed * moveVertical * Time.deltaTime);
 		transform.Rotate(0f, rotationSpeed * moveHorizontal * Time.deltaTime, 0f);
