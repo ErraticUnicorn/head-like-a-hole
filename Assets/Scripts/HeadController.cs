@@ -1,65 +1,85 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HeadController : MonoBehaviour
-{
-
+public class HeadController : MonoBehaviour {
     public float speed;
+    public float mouseSensitivity = 100.0f;
+    public float clampAngle = 80.0f;
 
-    private Rigidbody rb;
-	private InputController inputController;
-	private int playerNum;
-	private string moveHorizontalAxis;
-	private string moveVerticalAxis;
-	private int lastThrownByPlayerNumber;
+    [HideInInspector] public bool isDisabled;
+
+    private PlayerManager playerManager;
+    private Rigidbody myRigidbody;
+    private InputController inputController;
+    private int playerNum;
+    private string moveHorizontalAxis;
+    private string moveVerticalAxis;
+    private int lastThrownByPlayerNumber;
+    private float rotY = 0.0f;
+    private float rotX = 0.0f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        Vector3 rot = transform.localRotation.eulerAngles;
+        rotY = rot.y;
+        rotX = rot.x;
 
-		inputController = GameObject.FindWithTag ("GameController").GetComponent<InputController>();
-		string parentTag = this.transform.parent.tag;
-		string playerNumberChar = parentTag.Substring (parentTag.Length - 1);
-		int.TryParse (playerNumberChar, out playerNum);
-		moveHorizontalAxis = inputController.GetHeadHorizontalInputString (playerNum);
-		moveVerticalAxis = inputController.GetHeadVerticalInputString (playerNum);
-		lastThrownByPlayerNumber = 0;
+        playerManager = this.transform.parent.gameObject.GetComponent<PlayerManager>();
+        myRigidbody = GetComponent<Rigidbody>();
+
+        inputController = GameObject.FindWithTag("GameController").GetComponent<InputController>();
+        playerNum = playerManager.playerNumber;
+        moveHorizontalAxis = inputController.GetHeadHorizontalInputString(playerNum);
+        moveVerticalAxis = inputController.GetHeadVerticalInputString(playerNum);
+        lastThrownByPlayerNumber = 0;
+    }
+
+    void Update()
+    {
+        float mouseX = Input.GetAxis(moveHorizontalAxis);
+        float mouseY = -Input.GetAxis(moveVerticalAxis);
+
+        rotY += mouseX * mouseSensitivity * Time.deltaTime;
+        rotX += mouseY * mouseSensitivity * Time.deltaTime;
+
+        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
     }
 
     void FixedUpdate()
     {
-		float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
-		float moveVertical = Input.GetAxis(moveVerticalAxis);
+		//float moveHorizontal = Input.GetAxis(moveHorizontalAxis);
+		//float moveVertical = Input.GetAxis(moveVerticalAxis);
 
-        Vector3 eulerAngleVelocity = new Vector3(moveVertical, moveHorizontal, 0);
-        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);
+        //Vector3 eulerAngleVelocity = new Vector3(moveVertical, moveHorizontal, 0);
+        //Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * speed);
 
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        //myRigidbody.MoveRotation(myRigidbody.rotation * deltaRotation);
     }
 
-	public void EnableHeadInteraction () {
-		if(playerNum == 1){ 
-			Physics.IgnoreLayerCollision (8, 9, false);
-		} else {
-			Physics.IgnoreLayerCollision (8, 10, false);
-		}
-		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+    public void EnableHeadRigidbody()
+    {
+        Debug.Log("EnableHeadRigidbody is firing");
+        isDisabled = false;
+        myRigidbody = this.transform.parent.gameObject.AddComponent<Rigidbody>();
 	}
 
-	public void DisableHeadInteraction () {
-		if(playerNum == 1){ 
-			Physics.IgnoreLayerCollision(8, 9, true);
-		} else {
-			Physics.IgnoreLayerCollision(8, 10, true);
-		}
-		this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    public void DisableHeadRigidbody()
+    {
+        Debug.Log("DisableHeadRigidbody is firing");
+        isDisabled = true;
+        Destroy(myRigidbody);
 	}
 
-	public void SetLastThrownByPlayerNumber(int playerNumber) {
+	public void SetLastThrownByPlayerNumber(int playerNumber)
+    {
 		lastThrownByPlayerNumber = playerNumber;
 	}
 
-	public int GetLastThrownByPlayerNumber() {
+	public int GetLastThrownByPlayerNumber()
+    {
 		return lastThrownByPlayerNumber;
 	}
 }

@@ -12,8 +12,6 @@ public class GameController : MonoBehaviour {
 	public int numberOfPointsUntilGameOver = 2;
 
 	private ScoreController scoreController;
-	private string startAxis1;
-	private string startAxis2;
 
 	// Use this for initialization
 	void Start () {
