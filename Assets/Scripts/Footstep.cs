@@ -17,8 +17,8 @@ public class Footstep : MonoBehaviour {
 			footOrientationString = "Left";
 		}
 
-		GameObject playerOne = GameObject.Find ("PlayerTwo");
-		if(gameObject.transform.IsChildOf(playerOne.transform)) {
+		GameObject playerTwo = GameObject.Find ("PlayerTwo");
+		if(gameObject.transform.IsChildOf(playerTwo.transform)) {
 			playerString = "P2";
 		}
 	}
