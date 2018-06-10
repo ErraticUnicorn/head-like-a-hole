@@ -31,4 +31,10 @@ public class PickupHead : MonoBehaviour {
 			bodyController.isDecapitated = false;
 		}
 	}
+
+	public IEnumerator disableForSeconds(float seconds) {
+		this.enabled = false;
+		yield return new WaitForSecondsRealtime (seconds);
+		this.enabled = true;
+	}
 }

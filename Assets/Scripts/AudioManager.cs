@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
 
+	public float masterVolume = 1;
 	public Sound[] sounds;
 
 	private static AudioManager instance = null;
@@ -22,7 +23,7 @@ public class AudioManager : MonoBehaviour {
 		foreach (Sound s in sounds) {
 			s.source = gameObject.AddComponent<AudioSource> ();
 			s.source.clip = s.clip;
-			s.source.volume = s.volume;
+			s.source.volume = s.volume * masterVolume;
 			s.source.pitch = s.pitch;
 			s.source.loop = s.loop;
 		}
@@ -46,6 +47,13 @@ public class AudioManager : MonoBehaviour {
 		}
 		if (!s.source.isPlaying) {
 			s.source.Play ();
+		}
+	}
+
+	public void SetMasterVolume (float volume) {
+		masterVolume = volume;
+		foreach (Sound s in sounds) {
+			s.source.volume = s.volume * masterVolume;
 		}
 	}
 }
