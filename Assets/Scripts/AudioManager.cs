@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour {
 			Debug.LogWarning ("No sound of that name found!");
 			return;
 		}
-		s.source.Play ();
+		if (!s.source.isPlaying) {
+			s.source.Play ();
+		}
 	}
 }
