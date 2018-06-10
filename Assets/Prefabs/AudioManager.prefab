@@ -64,3 +64,27 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: P1 Right Footstep
+    clip: {fileID: 8300000, guid: f0013e8836f1412409e6952b3045286c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: P1 Left Footstep
+    clip: {fileID: 8300000, guid: 776e64beccea72042878bbcfa1c94777, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: P2 Right Footstep
+    clip: {fileID: 8300000, guid: 170fb3f06c15379419ca7b4416ca303f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: P2 Left Footstep
+    clip: {fileID: 8300000, guid: 1fb81ffc1cb4188498c114c89e180f15, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
