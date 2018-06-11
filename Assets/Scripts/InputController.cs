@@ -20,7 +20,7 @@ public class InputController : MonoBehaviour {
 		if (controllersConnected) {
 			return "j"+playerNum + "RightJoyStick1 X";
 		} else {
-			return "Mouse X";
+			return "keyboardHeadHorizontal"+playerNum;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class InputController : MonoBehaviour {
 		if (controllersConnected) {
 			return "j"+playerNum + "RightJoyStick1 Y";
 		} else {
-			return "Mouse Y";
+			return "keyboardHeadVertical"+playerNum;
 		}
 	}
 

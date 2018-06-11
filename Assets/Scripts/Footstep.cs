@@ -26,7 +26,8 @@ public class Footstep : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
 		if (bodyController.isWalking) {
-			audioManager.Play (playerString + " " + footOrientationString + " Footstep");
+			name = playerString + " " + footOrientationString + " Footstep";
+			audioManager.Play (name);
 		}
 	}
 }
