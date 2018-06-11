@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shove : MonoBehaviour {
 
-	public float shoveForce = 50f;
+	public float shoveForce = 500f;
 
 	private int playerNum;
 	private string shoveAxis;
@@ -38,11 +38,15 @@ public class Shove : MonoBehaviour {
 			opponentRigidBody.AddForce (shovedDirection*shoveForce);
 			BodyController bodyController = shovedPlayer.GetComponent<BodyController> ();
 			if (!bodyController.isDecapitated) {
+				shovedPlayer.GetComponent<PickupHead> ().disableForSeconds(1);
 				GameObject opponentHead = bodyController.GetCurrentHead ();
-				bodyController.SetCurrentHead (null);
-				bodyController.isDecapitated = true;
+				HeadController opponentHeadController = opponentHead.GetComponent<HeadController> ();
+				opponentHeadController.EnableHeadInteraction ();
+				opponentHead.transform.parent = this.transform.parent;
+				opponentHead.GetComponent<Rigidbody> ().AddForce (gameObject.transform.forward * 500);
 				opponentHead.tag = "isBodyless";
-				opponentHead.GetComponent<HeadController> ().EnableHeadInteraction ();
+				bodyController.SetCurrentHead(null);
+				bodyController.isDecapitated = true;
 			}
 		}
 	}
